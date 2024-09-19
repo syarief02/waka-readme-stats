@@ -119,13 +119,9 @@ async def get_short_github_info() -> str:
     DBM.i("Adding private repositories info...")
     private_repo = GHM.USER.owned_private_repos if GHM.USER.owned_private_repos is not None else 0
     if public_repo != 1:
-        stats += f"> 🔑 {FM.t('private repositories') % private_repo} \n > \n"
+        stats += f"> 🔑 {FM.t('private repositories') % private_repo} \n > \n<details><summary>Full Stats (click me to toggle 👀)</summary><br>\n\n"
     else:
-        stats += f"> 🔑 {FM.t('private repository') % private_repo} \n > \n"
-    
-    DBM.i("Adding last GitHub info...")    
-    stats += f"<details><summary>Full Stats (click me to toggle 👀)</summary><br>\n\n"
-
+        stats += f"> 🔑 {FM.t('private repository') % private_repo} \n > \n<details><summary>Full Stats (click me to toggle 👀)</summary><br>\n\n"
     
     DBM.g("Short GitHub info added!")
     return stats
