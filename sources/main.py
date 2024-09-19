@@ -123,6 +123,10 @@ async def get_short_github_info() -> str:
     else:
         stats += f"> 🔑 {FM.t('private repository') % private_repo} \n > \n"
     
+    DBM.i("Adding last GitHub info...")    
+    stats += f"<details><summary>Full Stats (click me to toggle 👀)</summary><br>\n\n"
+
+    
     DBM.g("Short GitHub info added!")
     return stats
 
@@ -185,9 +189,6 @@ async def get_stats() -> str:
 
     if EM.SHOW_SHORT_INFO:
         stats += await get_short_github_info()
-    
-    # hide stats
-    stats += f"<details><summary>Full Stats (click me to toggle 👀)</summary><br>\n\n"
 
     stats += await get_waka_time_stats(repositories, commit_data)
 
