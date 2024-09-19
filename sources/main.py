@@ -122,7 +122,11 @@ async def get_short_github_info() -> str:
         stats += f"> 🔑 {FM.t('private repositories') % private_repo} \n > \n"
     else:
         stats += f"> 🔑 {FM.t('private repository') % private_repo} \n > \n"
-
+  
+# Add your HTML code here 
+    DBM.i("Hide Full Stats...")
+    stats += f"> {'<details><summary>Full Stats (click me to toggle 👀)</summary><br>'}\n > \n"
+    
     DBM.g("Short GitHub info added!")
     return stats
 
