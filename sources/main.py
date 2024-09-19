@@ -29,6 +29,8 @@ async def get_waka_time_stats(repositories: Dict, commit_dates: Dict) -> str:
     """
     DBM.i("Adding short WakaTime stats...")
     stats = str()
+    # hide stats
+    stats += f"<details><summary>Full Stats (click me to toggle 👀)</summary><br>\n\n"
 
     data = await DM.get_remote_json("waka_latest")
     if data is None:
@@ -36,7 +38,6 @@ async def get_waka_time_stats(repositories: Dict, commit_dates: Dict) -> str:
         return stats
     if EM.SHOW_COMMIT or EM.SHOW_DAYS_OF_WEEK:  # if any on flag is turned on then we need to calculate the data and print accordingly
         DBM.i("Adding user commit day time info...")
-        stats += await f"<details><summary>Full Stats (click me to toggle 👀)</summary><br>\n\n"
         stats += f"{await make_commit_day_time_list(data['data']['timezone'], repositories, commit_dates)}\n\n"
 
     if EM.SHOW_TIMEZONE or EM.SHOW_LANGUAGE or EM.SHOW_EDITORS or EM.SHOW_PROJECTS or EM.SHOW_OS:
