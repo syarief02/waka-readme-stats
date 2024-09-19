@@ -29,8 +29,6 @@ async def get_waka_time_stats(repositories: Dict, commit_dates: Dict) -> str:
     """
     DBM.i("Adding short WakaTime stats...")
     stats = str()
-    # hide stats
-    stats += f"{FM.t('<details><summary>Full Stats (click me to toggle 👀)</summary><br>')}\n\n"
 
     data = await DM.get_remote_json("waka_latest")
     if data is None:
@@ -187,6 +185,9 @@ async def get_stats() -> str:
 
     if EM.SHOW_SHORT_INFO:
         stats += await get_short_github_info()
+    
+    # hide stats
+    stats += f"<details><summary>Full Stats (click me to toggle 👀)</summary><br>\n\n"
 
     stats += await get_waka_time_stats(repositories, commit_data)
 
